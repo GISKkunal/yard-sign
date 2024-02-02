@@ -1,0 +1,414 @@
+:root {
+  /* font-size: 14px; */
+  background-color: #fff;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+p {
+  font-family: 'Noto Sans', sans-serif;
+  margin: 0;
+}
+
+button  {
+  cursor:  pointer;
+}
+
+.typographyColorLight {
+  color: #151515;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.typographyColorDark {
+  color: #fff;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.cardColorLight {
+  border-radius: 28px !important;
+  background: #fff !important;
+  box-shadow: 0px 5.056856155395508px 5.056856155395508px 0px
+    rgba(82, 63, 105, 0.05) !important;
+  padding: 16px !important;
+}
+.cardColorLightOpacity{
+  border-radius: 28px !important;
+  background: rgb(255, 255, 255, 0.1) !important;
+  box-shadow: 0px 5.056856155395508px 5.056856155395508px 0px
+    rgba(82, 63, 105, 0.05) !important;
+  padding: 16px !important;
+}
+.cardColorDark {
+  border-radius: 28px !important;
+  background: #172031 !important;
+  box-shadow: 0px 5.056856155395508px 5.056856155395508px 0px
+    rgba(82, 63, 105, 0.05) !important;
+  padding: 16px !important;
+}
+.cardColorDarkOpacity{
+  border-radius: 28px !important;
+  background: rgb(23, 32, 49, 0.1) !important;
+  box-shadow: 0px 5.056856155395508px 5.056856155395508px 0px
+    rgba(82, 63, 105, 0.05) !important;
+  padding: 16px !important;
+}
+.BoxBackgroundLight {
+  border-radius: 28px !important;
+  background: #fff !important;
+  padding: 16px !important;
+}
+
+.BoxBackgroundDark {
+  border-radius: 28px !important;
+  background: #232b3b !important;
+  padding: 16px !important;
+}
+
+.apexcharts-datalabels-group  {
+  display: none !important;
+}
+
+.profileCardColorLight {
+  border-radius: 10px;
+  background: #FFF !important;
+  box-shadow: 0px 5.056856155395508px 5.056856155395508px 0px rgba(82, 63, 105, 0.05) !important;
+  padding: 28px;
+}
+
+.profileCardColorDark {
+  border-radius: 10px;
+  background: #172031 !important;
+  box-shadow: 0px 5.056856155395508px 5.056856155395508px 0px rgba(82, 63, 105, 0.05) !important;
+  padding: 28px;
+}
+
+.profileDarkButton {
+  display: flex;
+  padding: 6px 11px;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  border-radius: 100px;
+  background: #fff;
+  color: #0b1426;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  cursor: pointer;
+}
+
+.profileLightButton {
+  display: flex;
+  padding: 6px 11px;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  border-radius: 100px;
+  background: #0b1426;
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  cursor: pointer;
+}
+
+.dark {
+  background: #fff;
+}
+
+.light {
+  background: #172031;
+  color: #fff !important;
+}
+
+.inputColorDark {
+  color: #fff !important;
+}
+
+.inputColorDark::placeholder {
+  color: #6c757d;
+}
+
+.inputColorLight {
+  color: #6C757D !important;
+}
+
+.inputColorLight::placeholder {
+  color: #6c757d;
+  background: #172031;
+}
+
+.inputColorLightTextField::placeholder {
+  color: #0B1426;
+  background: #fff !important;
+}
+
+.apexcharts-radialbar-hollow {
+  display: none;
+}
+
+.apexcharts-svg {
+  margin-top: -20px;
+}
+
+#ProfileTextFieldLight::placeholder {
+  color: #0B1426;
+}
+.reportCardDark{
+background:#fff
+}
+.reportCardLight{
+  background:#0B1426
+}
+.reportTypographyColorLight{
+  color:#FFF
+}
+.reportTypographyColorDark{
+  color:#0B1426
+}
+#ProfileTextFieldLight::placeholder{
+color: #0B1426;
+}
+
+#ProfileTextFieldDark::placeholder {
+  color: #fff;
+}
+
+/* mui DATE picker CSS */
+.MuiPickersToolbar-toolbar {
+  background-color: #0B1426 !important;
+}
+
+.MuiPickersDay-daySelected {
+  color: #fff !important;
+  background-color: #0b1426 !important;
+}
+
+/* .MuiButton-textPrimary {
+  color: #0b1426 !important;
+} */
+
+.MuiPickersModal-dialogRoot {
+  border-radius: 20px !important;
+}
+
+/* .MuiPickersDay-current{
+  color: rgb(0, 0, 0, 0.5) !important;
+} */
+
+/* Scrollbar CSS*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* Pagination Css */
+.MuiPaginationItem-page.Mui-selected {
+  background-color: #fff !important;
+  color: #0b1426 !important;
+  border: 1px solid #0b1426 !important;
+}
+.MuiPaginationItem-outlined {
+  border: 1px solid #dfe3e8 !important;
+  background: #fff !important;
+  color: rgba(11, 20, 38, 0.5) !important;
+}
+.MuiPaginationItem-page.Mui-disabled {
+  opacity: 0.5 !important;
+  background: #919eab !important;
+}
+.MuiPaginationItem-sizeLarge{
+  height: 32px !important;
+  min-width: 32px !important;
+}
+.lightOutlinedButton {
+  border-radius: 8px;
+  border: 2px solid #0B1426;
+  color: #0B1426;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  height: 43px;
+  width: 100%;
+  max-width: 124px;
+
+}
+
+.lightFilledButton {
+  border-radius: 8px;
+  background: #0B1426;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  height: 43px;
+  width: 100%;
+  max-width: 124px;
+}
+
+
+.darkOutlinedButton {
+  border-radius: 8px;
+  border: 2px solid #fff;
+  color: #fff;
+  background:none;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  height: 43px;
+  width: 100%;
+  max-width: 124px;
+
+}
+
+.darkFilledButton {
+  border-radius: 8px;
+  background: #fff;
+  border: none;
+  color: #0B1426;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  height: 43px;
+  width: 100%;
+  max-width: 124px;
+}
+
+@media (max-width: 590px) {
+  .lightOutlinedButton {
+    font-size: 12px;
+    height: 34px;
+    width: 100%;
+    max-width: 80px;
+
+  }
+
+  .lightFilledButton {
+    font-size: 12px;
+    height: 34px;
+    width: 100%;
+    max-width: 80px;
+  }
+
+  .darkOutlinedButton {
+    font-size: 12px;
+    height: 34px;
+    width: 100%;
+    max-width: 80px;
+
+  }
+
+  .darkFilledButton {
+    font-size: 12px;
+    height: 34px;
+    width: 100%;
+    max-width: 80px;
+  }
+}
+.MuiInput-underline:after{
+  border-bottom: none !important;
+}
+.MuiInput-underline:before{
+  border-bottom: none !important;
+}
+.MuiDialog-paperFullWidth{
+  border-radius: 10px !important;
+}
+.MuiTableCell-root{
+  border-bottom: 1px solid rgba(224, 224, 224, 0.5) !important;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+  border-color: rgb(0, 0, 0 , 0.5) !important;
+  border-style: none !important;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.special-label{
+  display: none;
+}
+
+.ol-map {
+  min-width: 600px;
+  min-height: 500px;
+  margin: 50px;
+  height: 500px;
+  width: "100%";
+}
+.ol-control {
+  position: absolute;
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 4px;
+  padding: 2px;
+}
+.ol-full-screen {
+  top: .5em;
+  right: .5em;
+}
+/* YourComponent.css */
+
+/* .MuiInputBase-input */
+.MuiInputBase-input {
+  color: black !important;
+  font-family: 'Noto Sans', sans-serif !important;
+  font-size: 16px !important;
+  line-height: 125% !important;
+  font-weight: 400 !important;
+}
+
+/* .MuiOutlinedInput-inputMarginDense */
+.MuiOutlinedInput-inputMarginDense {
+  padding: 18px 16px !important;
+}
+.MuiOutlinedInput-input {
+  padding: 18px 16px !important;
+}
+/* YourComponent.css */
+
+/* .MuiOutlinedInput-root */
+.MuiOutlinedInput-root {
+  background: #fff !important;
+  border-radius: 10px !important;
+}
+
+/* .MuiOutlinedInput-input */
+.MuiOutlinedInput-input {
+  padding: 18px 16px !important;
+}
+
+/* .MuiInputBase-root.Mui-disabled */
+.MuiInputBase-root.Mui-disabled {
+  color: #000 !important;
+}
+.ol-overlaycontainer-stopevent > div:first-child {
+  display: none;
+}
