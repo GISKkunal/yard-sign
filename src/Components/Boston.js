@@ -91,9 +91,9 @@ const Boston = (props, ref) => {
   useEffect(() => {
     const wmsLayer = new TileLayer({
       source: new TileWMS({
-        url: "http://localhost:8080/geoserver/ne/wms",
+        url: "http://localhost:8080/geoserver/Practice_MA/wms",
         params: {
-          LAYERS: "ne:Boston",
+          LAYERS: "Practice_MA:Practice_MA",
           TILED: true,
           CQL_FILTER: userIndus ? userIndus : undefined,
         },
