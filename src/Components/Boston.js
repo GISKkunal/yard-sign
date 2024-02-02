@@ -3,6 +3,7 @@ import React, {
   useState,
   forwardRef,
   useImperativeHandle,
+  useRef,
 } from "react";
 import "ol/ol.css";
 import Map from "ol/Map";
@@ -22,7 +23,7 @@ import Button from "@mui/material/Button";
 import { grey } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import { fromLonLat } from "ol/proj";
- 
+
 const ColorButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(grey[500]),
   backgroundColor: grey[500],
@@ -30,7 +31,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
     backgroundColor: grey[700],
   },
 }));
- 
+
 const Boston = (props, ref) => {
   const { latLon } = props;
   const [map, setMap] = useState(null);
@@ -39,25 +40,26 @@ const Boston = (props, ref) => {
   const [userIndus, setUserIndus] = useState("");
   const [isPopupActive, setIsPopupActive] = useState(false);
   const [clickedCoordinates, setClickedCoordinates] = useState(null);
- 
+  const userIndusRef = useRef("");
+
   const parseHtml = (html) => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
     const rows = doc.querySelectorAll("table.featureInfo tr");
- 
+
     const headers = Array.from(rows[0].querySelectorAll("th")).map((th) =>
       th.textContent.trim()
     );
- 
+
     const dataRow = Array.from(rows[1].querySelectorAll("td")).map((td) =>
       td.textContent.trim()
     );
- 
+
     const dataObject = headers.reduce((obj, header, index) => {
       obj[header] = dataRow[index];
       return obj;
     }, {});
- 
+
     const attributes = [
       "USER_Organ",
       "USER_Websi",
@@ -77,30 +79,28 @@ const Boston = (props, ref) => {
       "USER_Sic_C",
       "USER_Indus",
     ];
- 
+
     const filteredData = Object.entries(dataObject)
       .filter(([key]) => attributes.includes(key))
       .map(([key, value]) => `${key}: ${value}`)
       .join("<br/>");
- 
+
     return filteredData;
   };
- 
+
   useEffect(() => {
- 
- 
     const wmsLayer = new TileLayer({
       source: new TileWMS({
-        url: "http://localhost:8080/geoserver/Practice_MA/wms",
+        url: "http://localhost:8080/geoserver/ne/wms",
         params: {
-          LAYERS: "Practice_MA:Practice_MA",
+          LAYERS: "ne:Boston",
           TILED: true,
           CQL_FILTER: userIndus ? userIndus : undefined,
         },
         serverType: "geoserver",
       }),
     });
- 
+
     const newMap = new Map({
       target: "map",
       layers: [
@@ -118,18 +118,18 @@ const Boston = (props, ref) => {
         zoom: 9,
       }),
     });
- 
+
     const geolocationObj = new Geolocation({
       trackingOptions: {
         enableHighAccuracy: true,
       },
       projection: newMap.getView().getProjection(),
     });
- 
+
     setGeolocation(geolocationObj);
- 
+
     geolocationObj.setTracking(true);
- 
+
     geolocationObj.on("change:position", () => {
       const coordinates = geolocationObj.getPosition();
       if (coordinates) {
@@ -145,7 +145,7 @@ const Boston = (props, ref) => {
         .getFeatureInfoUrl(evt.coordinate, viewResolution, "EPSG:3857", {
           INFO_FORMAT: "text/html",
         });
- 
+
       if (url) {
         fetch(url)
           .then((response) => response.text())
@@ -153,9 +153,9 @@ const Boston = (props, ref) => {
             const parsedContent = parseHtml(html);
             setPopupContent(parsedContent);
             setIsPopupActive(true);
- 
+
             const isPointFeature = html.includes("Point");
- 
+
             if (isPointFeature) {
               setClickedCoordinates(evt.coordinate);
             }
@@ -176,16 +176,26 @@ const Boston = (props, ref) => {
         evt.pixel,
         (layer) => layer === wmsLayer
       );
- 
+
       newMap.getTargetElement().style.cursor = isWmsLayer ? "pointer" : "";
     });
- 
+
     setMap(newMap);
- 
     return () => {
       newMap.setTarget("");
       geolocationObj.setTracking(false);
     };
+  }, []);
+
+  useEffect(() => {
+    userIndusRef.current = userIndus;
+
+    if (map) {
+      const wmsLayer = map.getLayers().getArray()[1];
+      wmsLayer
+        .getSource()
+        .updateParams({ CQL_FILTER: userIndusRef.current || undefined });
+    }
   }, [userIndus]);
   const handleClick = (value) => {
     value !== "" ? setUserIndus(`USER_Indus='${value}'`) : setUserIndus("");
@@ -195,7 +205,7 @@ const Boston = (props, ref) => {
     if (view) {
       const duration = 2000;
       const zoom = view.getZoom();
- 
+
       view.animate(
         {
           center: location,
@@ -217,7 +227,7 @@ const Boston = (props, ref) => {
       );
     }
   };
- 
+
   const getCurrentLocation = () => {
     const coordinates = geolocation?.getPosition();
     if (coordinates) {
@@ -232,31 +242,31 @@ const Boston = (props, ref) => {
       duration: 200,
     });
   };
- 
+
   const handleZoomOut = () => {
     map.getView().animate({
       zoom: map.getView().getZoom() - 1,
       duration: 200,
     });
   };
- 
+
   useImperativeHandle(ref, () => ({
     handleZoomIn,
     handleZoomOut,
     getCurrentLocation,
     handleClick,
   }));
- 
+
   useEffect(() => {
     if (latLon) {
       flyTo(fromLonLat(latLon), () => {});
     }
   }, [latLon]);
- 
+
   return (
     <>
       <div id="map" style={{ width: "100%", height: "100%" }} />
- 
+
       {isPopupActive && (
         <div className={`popup-box ${isPopupActive ? "active" : ""}`}>
           <p dangerouslySetInnerHTML={{ __html: popupContent }} />
