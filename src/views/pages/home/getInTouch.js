@@ -14,7 +14,7 @@ import {
   MenuItem,
   Container,
 } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import React, { useContext, useEffect, useState } from "react";
 import { Form, Formik } from "formik";
 import * as yep from "yup";
@@ -23,7 +23,7 @@ import ApiConfig from "src/config/APICongig";
 import { toast, ToastContainer } from "react-toastify";
 import ButtonCircularProgress from "src/component/ButtonCircularProgress";
 import { AuthContext } from "src/context/Auth";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "src/context/User";
 import PhoneInput from "react-phone-input-2";
 
@@ -182,7 +182,7 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiInputBase-input": {
       color: "black !important",
       fontFamily: "'Noto Sans', sans-serif !important",
-      fontSize: "16p !importantx",
+      fontSize: "16px !importantx",
       lineHeight: "125% !important",
       fontWeight: "400 !important",
     },
@@ -191,7 +191,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   TextBoxFormControl: {
-    marginTop:"6px",
+    marginTop: "6px",
+    border: "1px solid rgb(184, 185, 186, 0.3)",
+    borderRadius: "11px",
     "& .MuiOutlinedInput-root": {
       background: "#fff",
       borderRadius: "10px",
@@ -236,7 +238,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "16px",
     fontFamily: "'Noto Sans', sans-serif !important",
     fontStyle: "normal",
-    marginTop:"6px",
+    marginTop: "6px",
     "&:focus": {
       outline: "none",
     },
@@ -466,9 +468,7 @@ export default function GetInTouch() {
                           value={values.firstName}
                           name="firstName"
                           className={classes.LoginTextBox}
-                          error={Boolean(
-                            touched.firstName && errors.firstName
-                          )}
+                          error={Boolean(touched.firstName && errors.firstName)}
                           onBlur={handleBlur}
                           onChange={handleChange}
                           onSubmit={handleSubmit}
@@ -502,9 +502,7 @@ export default function GetInTouch() {
                           value={values.lastName}
                           name="lastName"
                           className={classes.LoginTextBox}
-                          error={Boolean(
-                            touched.lastName && errors.lastName
-                          )}
+                          error={Boolean(touched.lastName && errors.lastName)}
                           onBlur={handleBlur}
                           onChange={handleChange}
                           onSubmit={handleSubmit}
@@ -556,12 +554,14 @@ export default function GetInTouch() {
                             width: "-webkit-fill-available",
                             color: "#000",
                             border: "1px solid rgb(184, 185, 186)",
-                            padding:"18px 16px",
+                            padding: "18px 16px",
                             marginTop: "5px",
                             borderRadius: "10px",
                           }}
                           value={values.phoneNumber}
-                          error={Boolean(touched.phoneNumber && errors.phoneNumber)}
+                          error={Boolean(
+                            touched.phoneNumber && errors.phoneNumber
+                          )}
                           onBlur={handleBlur}
                           onChange={(mobile, e) => {
                             setCountryCode(e.dialCode);

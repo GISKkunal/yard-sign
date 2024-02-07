@@ -13,7 +13,7 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import { FaArrowRight } from "react-icons/fa6";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
 import { AiOutlineMail } from "react-icons/ai";
@@ -77,13 +77,13 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "18px",
         "& svg": {
           marginRight: "10px",
-          color: "#408FAC",
+          color: "#172624",
           fontSize: "15px",
         },
       },
     },
     "& svg": {
-      color: "#408FAC",
+      color: "#172624",
       fontSize: "15px",
     },
 
@@ -114,6 +114,9 @@ const useStyles = makeStyles((theme) => ({
   footerlogo: {
     Width: "160px",
     height: "40px",
+  },
+  logo: {
+    maxWidth:"200px"
   },
   dialogProfileDiv: {
     display: "grid",
@@ -186,7 +189,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#F7F6F1 !important",
     textAlign: "start",
     textTransform: "uppercase !important",
-    margin:"24px 0 40px 0 !important",
+    margin: "24px 0 40px 0 !important",
     "@media (max-width: 1400px)": {
       fontSize: "60px !important",
     },
@@ -195,11 +198,11 @@ const useStyles = makeStyles((theme) => ({
     },
     "@media (max-width: 920px)": {
       fontSize: "44px !important",
-      margin:"24px 0 24px 0 !important",
+      margin: "24px 0 24px 0 !important",
     },
     "@media (max-width: 599px)": {
       fontSize: "32px !important",
-      margin:"20px 0 20px 0 !important",
+      margin: "20px 0 20px 0 !important",
     },
   },
   body1: {
@@ -241,7 +244,7 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid #FDFAFE !important",
     maxWidth: "200px !important",
     background: "#fff !important",
-    width:"100% !important",
+    width: "100% !important",
     "&:hover": {
       color: "#172624 !important",
       background: "#fff !important",
@@ -270,7 +273,14 @@ export default function Liquidity() {
           <Grid container>
             <Grid item xs={7} sm={7} md={10}>
               <Box mr={8}>
-                <Typography className={classes.body1}>LOGO</Typography>
+                {/* <Typography className={classes.body1}>LOGO</Typography> */}
+                <img
+                  className={classes.logo}
+                  src="/images/Logo.png"
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                />
                 <Typography className={classes.largeText}>
                   Post Your Free Digital Yard Signs -Today!{" "}
                 </Typography>

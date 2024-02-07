@@ -71,7 +71,7 @@ function PrivacyPolicy() {
   return (
     <Box className={classes.mainBox}>
       <Box>
-        <img src="/images/logo.svg" onClick={()=>{navigate("/")}}/>
+        <img src="/images/Logo.png" onClick={()=>{navigate("/")}} style={{maxWidth:"200px"}}/>
       </Box>
       <Box><Typography className={classes.mainHeading}>Privacy Policy</Typography></Box>
     {data && <Box className={classes.content}>

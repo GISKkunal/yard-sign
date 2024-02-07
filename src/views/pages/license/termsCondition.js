@@ -82,7 +82,7 @@ const [data, setData] = useState({})
   return (
     <Box className={classes.mainBox}>
       <Box onClick={()=>{navigate("/")}}>
-        <img src="/images/logo.svg" />
+        <img src="/images/Logo.png" alt="" style={{maxWidth:"200px"}}/>
       </Box>
       <Box><Typography className={classes.mainHeading}>Membership Agreement</Typography></Box>
     {data && <Box className={classes.content}>

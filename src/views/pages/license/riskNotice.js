@@ -70,7 +70,7 @@ function RiskNotice() {
     return (
         <Box className={classes.mainBox}>
         <Box onClick={()=>{navigate("/")}}>
-          <img src="/images/logo.svg" />
+          <img src="/images/Logo.png" alt="" style={{maxWidth:"200px"}}/>
         </Box>
         <Box><Typography className={classes.mainHeading}>Risk Warning</Typography></Box>
       {data && <Box className={classes.content}>

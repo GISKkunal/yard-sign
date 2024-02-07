@@ -36,7 +36,7 @@ const Logo = (props) => {
       {themeSeeting.settings.theme === "DARK" && (
         <img
           onClick={() => navigate('/signup')}
-          src="/images/logo.svg"
+          src="/images/Logo.png"
           alt="Logo"
           style={{ cursor: "pointer", width: "112px", }}
           {...props}
@@ -45,7 +45,7 @@ const Logo = (props) => {
       {themeSeeting.settings.theme === "LIGHT" && (
         <img
           onClick={() => navigate("/")}
-          src="/images/logo.svg"
+          src="/images/Logo.png"
           alt="Logo"
           style={{ cursor: "pointer", width: "112px",  }}
           {...props}

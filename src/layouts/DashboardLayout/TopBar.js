@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   logo: {
+    maxWidth:"200px"
     // marginRight: theme.spacing(2),
   },
 
@@ -172,7 +173,7 @@ export function TopBarData() {
     <>
       <img
         className={classes.logo}
-        src="/images/Logo.svg"
+        src="/images/Logo.png"
         onClick={() => {
           navigate("/");
         }}

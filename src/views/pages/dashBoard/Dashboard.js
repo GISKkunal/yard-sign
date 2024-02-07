@@ -7,10 +7,11 @@ import {
   InputAdornment,
   MenuItem,
   Select,
+  Drawer,
   TextField,
   Typography,
 } from "@mui/material";
-
+import Carousel from "react-material-ui-carousel";
 import { HiLocationMarker } from "react-icons/hi";
 import { makeStyles } from "@mui/styles";
 import React, { useState, useRef } from "react";
@@ -23,9 +24,34 @@ import Boston from "src/Components/Boston";
 import { values } from "lodash";
 import Axios from "axios";
 // import BostonMap from "./map/BostonMap";
+import { IoIosArrowForward } from "react-icons/io";
 
 const useStyles = makeStyles((theme) => ({
   headbox: {
+    "& .openBoxTag": {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      padding: "16px",
+      background: "#fff",
+      borderRadius: "8px",
+      width: "100%",
+      maxWidth: "300px",
+    },
+    "& .buttonCss": {
+      borderRadius: "8px",
+      background: "#172624",
+      padding: "12px",
+      fontFamily: "'Noto Sans', sans-serif",
+      fontStyle: "normal",
+      fontWeight: "400",
+      width: "100%",
+      fontSize: "14px",
+      lineHeight: "150%",
+      color: "#fff",
+      boxShadow: "0px 2px 20px 0px rgba(107, 107, 107, 0.20)",
+    },
     "& .MuiDialog-paperWidthSm": {
       maxWidth: "504px",
       borderRadius: "9px",
@@ -81,6 +107,7 @@ const useStyles = makeStyles((theme) => ({
     "& .divider": {
       borderBottom: "1px solid #DADCE0",
       marginTop: "5px",
+      
     },
     "& .gapBox": {
       display: "flex",
@@ -95,6 +122,7 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: "80px !important",
       },
     },
+  
   },
   manageCategory: {
     display: "flex",
@@ -203,29 +231,120 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "252px",
     maxHeight: "125px",
     overflow: "auto",
-    zIndex: "1"
+    zIndex: "1",
   },
   locationDiv: {
     display: "flex",
     gap: "8px",
     marginBottom: "8px",
     cursor: "pointer",
- 
   },
+  SwipeableDrawer: {
+    width: "475px",
+    // boxShadow: "0px 10px 30px 0px rgba(0, 0, 0, 0.10)",
+    background: "#fff",
+    "& .fence": {
+      fontFamily: "'Noto Sans', sans-serif",
+      fontStyle: "normal",
+      fontWeight: "500",
+      fontSize: "18px",
+      lineHeight: "20px",
+      color: "#5A5A5A",
+    },
+    "& .fenceTitle": {
+      fontFamily: "Big Shoulders Display, sans-serif !important",
+      fontStyle: "normal !important",
+      fontWeight: "800 !important",
+      fontSize: "30px !important",
+      lineHeight: "100% !important",
+      color: "#172624 !important",
+      textTransform: "uppercase !important",
 
+      "@media (max-width: 920px)": {
+        fontSize: "28px !important",
+      },
+      "@media (max-width: 599px)": {
+        fontSize: "26px",
+      },
+    },
+    "& .imgvideoList": {
+      display: "flex",
+      gap: "8px",
+      alignItems: "center",
+      overflow: "auto",
+      marginTop: "10px",
+    },
+    "& .dividerin": {
+      borderBottom: "1px solid #BFD9D5",
+      margin: "25px 0",
+    },
+   "& .newCard":{
+    width:"-webkit-fill-available",
+    background:"#ECF3F2",
+    borderRadius:"8px",
+    display:"grid",
+    justifyContent:"center",
+    gap:"8px",
+    padding:"10px",
+    marginTop:"30px",
+    marginRight:"24px"
+   }
+  },
+  buttonCss1:{
+    borderRadius: "8px",
+    background: "#5572FF",
+    padding: "12px",
+    fontFamily: "'Noto Sans', sans-serif",
+    fontStyle: "normal",
+    fontWeight: "400",
+    width: "100%",
+    fontSize: "14px",
+    lineHeight: "150%",
+    color: "#fff",
+    boxShadow: "0px 2px 20px 0px rgba(107, 107, 107, 0.20)",
+    "&:hover":{
+      background: "#5572FF",
+      color: "#fff",
+    }
+  },
+  Activebutton: {
+    borderRadius: "8px",
+    background: "#172624",
+    padding: "12px",
+    fontFamily: "'Noto Sans', sans-serif",
+    fontStyle: "normal",
+    fontWeight: "400",
+    fontSize: "14px",
+    lineHeight: "150%",
+    color: "#fff",
+    textTransform:"uppercase",
+    boxShadow: "0px 2px 20px 0px rgba(107, 107, 107, 0.20)",
+    "&:hover":{
+      background: "#172624",
+      color: "#fff",
+    }
+  },
 }));
 
 export default function Dashboard() {
   const classes = useStyles();
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [selectPosition, setSelectPosition] = useState("");
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openBox, setopenBox] = useState(false);
   const [latLon, setLatLon] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [search, setSearch] = useState("");
   const [selectItem, setSelectItem] = useState("");
+  const [bannerData, setBannerData] = useState([
+    "images/picView.svg",
+    "images/picView.svg",
+    "images/picView.svg",
+  ]);
   const [listItems, setListItems] = useState([]);
   const nominatum = "https://nominatim.openstreetmap.org/search?";
   const childRef = useRef();
+  console.log(openBox, openDrawer, "openBox");
   const navigate = useNavigate();
 
   const [category, setCategory] = useState([
@@ -255,7 +374,6 @@ export default function Dashboard() {
     fetch(`${nominatum}${queryString}`, requestOptions)
       .then((response) => response.text())
       .then((result) => {
-
         setListItems(JSON.parse(result));
       })
       .catch((err) => console.log("err", err));
@@ -263,6 +381,17 @@ export default function Dashboard() {
   const handlesetLat = (values) => {
     setLatLon(values);
   };
+  function Item(props) {
+    return (
+      // <Paper style={{
+      //   // height: "190px"
+      //   }}>
+
+      <img className={classes.imgCustom} src={props.item} alt="DashImage" />
+      //  </Paper>
+    );
+  }
+
   return (
     <Page title="Dashboard">
       <Box className={classes.headbox}>
@@ -278,7 +407,13 @@ export default function Dashboard() {
                   }}
                 >
                   {" "}
-                  <Boston ref={childRef} latLon={latLon} />
+                  <Boston
+                    ref={childRef}
+                    latLon={latLon}
+                    setopenBox={(value) => {
+                      setopenBox(value);
+                    }}
+                  />
                 </div>
 
                 <div>
@@ -400,7 +535,10 @@ export default function Dashboard() {
                                 <MenuItem value={""} disabled>
                                   More
                                 </MenuItem>
-                                <MenuItem style={{ fontSize: "12px" }} value={"All"} >
+                                <MenuItem
+                                  style={{ fontSize: "12px" }}
+                                  value={"All"}
+                                >
                                   All
                                 </MenuItem>
                                 {screenWidth < 1125
@@ -488,6 +626,104 @@ export default function Dashboard() {
             </Grid>
           </Grid>
         </Box>
+        {openBox && (
+          <Box className="openBoxTag">
+            <div>
+              <Typography
+                className="body"
+                textAlign={"center"}
+                style={{ lineHeight: "28px" }}
+              >
+                Business Name
+              </Typography>
+              <img
+                src="images/picView.svg"
+                alt=""
+                style={{
+                  width: "-webkit-fill-available",
+                  borderRadius: "8px",
+                  margin: "8px 0",
+                }}
+              />
+              <Button
+                onClick={() => {
+                  setOpenDrawer(true);
+                  setopenBox(false);
+                }}
+                className="buttonCss"
+              >
+                Contact Now
+              </Button>
+            </div>
+          </Box>
+        )}
+        {openDrawer && (
+          <Drawer
+            anchor={"left"}
+            open={openDrawer}
+            onClose={()=>{setOpenDrawer(false)}}
+          >
+            <Box className={classes.SwipeableDrawer}>
+              <div>
+                <Carousel
+                  height={100}
+                  duration={1000}
+                  animation="slide"
+                  // autoPlay={false}
+                  CarouselFullHeightHoverWrapper={{style: {maxHeight:"200px"}}}
+                  indicatorIconButtonProps={{
+                    style: {
+                      color: "rgb(255, 255, 255)",
+                    },
+                  }}
+                  activeIndicatorIconButtonProps={{
+                    style: {
+                      color: "rgb(255, 255, 255, 0.5)",
+                    },
+                  }}
+                  indicatorContainerProps={{
+                    style: {
+                      marginTop: "-24px",
+                      textAlign: "center",
+                    },
+                  }}
+                >
+                  {bannerData &&
+                    bannerData.map((item, i) => {
+                      return <Item key={i} item={item} />;
+                    })}
+                </Carousel>
+              </div>
+              <div style={{ padding: "20px 0 10px 24px" }}>
+                <div style={{marginRight:"24px"}}>
+                <div>
+                  <Typography className="fenceTitle">The Boston Fence Company</Typography>
+                  <Typography className="fence">Fence contractor</Typography>
+                </div>
+
+                <div className="dividerin"></div>
+                <Button className={classes.buttonCss1} >Contact Us</Button>
+                <div className="dividerin"></div>
+                <Typography className="fenceTitle" style={{fontSize:"20px"}}>Images & Videos</Typography></div>
+                <div className="imgvideoList">
+                  {bannerData.map((item, i) => {
+                    return (
+                      <img
+                        src={item}
+                        alt=""
+                        style={{ height: "156px", borderRadius: "12px" }}
+                      />
+                    );
+                  })}
+                </div>
+                <div className="newCard">
+                  <Typography>Are you a Home Service Provider?</Typography>
+                  <Button className={classes.Activebutton}>Join our pro network{" "}<IoIosArrowForward style={{color:"#fff", fontSize:"20px"}}/></Button>
+                </div>
+              </div>
+            </Box>
+          </Drawer>
+        )}
       </Box>
     </Page>
   );

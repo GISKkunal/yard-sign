@@ -41,9 +41,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: "14px",
   },
-  //   logo: {
-  //     flexGrow: 1,
-  //   },
+    logo: {
+      maxWidth:"200px"
+    },
   spotSmartT: {
     fontFamily: "'Noto Sans', sans-serif",
     fontStyle: "normal",
@@ -260,7 +260,7 @@ export default function TopBar() {
                 gap: "32px",
               }}
             >
-              <img className={classes.logo} src="/images/Logo.svg" onClick={()=>{navigate("/")}}/>
+              <img className={classes.logo} src="/images/Logo.png" onClick={()=>{navigate("/")}}/>
               <div className={classes.divider}></div>
               <Box className={classes.linkButtonsDiv}>
                 <Button className={classes.linkButton}>
@@ -416,7 +416,7 @@ export default function TopBar() {
         >
           <Toolbar className={classes.toolbarlogo}>
             <Box>
-              <img className={classes.logo} src="/images/Logo.svg" onClick={()=>{navigate("/")}}/>
+              <img className={classes.logo} src="/images/Logo.png" onClick={()=>{navigate("/")}}/>
             </Box>
             <Box>
               <MenuIcon onClick={handleDrawerOpen} />
@@ -436,7 +436,7 @@ export default function TopBar() {
                 style={{ width: "10rem" }}
               >
                 <List>
-                  <img className={classes.logo} src="/images/Logo.svg" onClick={()=>{navigate("/")}}/>
+                  <img className={classes.logo} src="/images/Logo.png" onClick={()=>{navigate("/")}}/>
                   <ListItem className={classes.linkButton1}>
                     <ScrollLink
                       className=""

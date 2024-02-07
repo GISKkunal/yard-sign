@@ -80,7 +80,7 @@ const LoginLayout = ({ children }) => {
           className={classes.firstscreen}
         >
           <div onClick={() => navigate("/")}>
-            <img className={classes.logo} src="images/logo.svg" />
+            <img className={classes.logo} src="images/Logo.png" />
           </div>
 
           <Box>

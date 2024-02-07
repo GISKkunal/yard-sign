@@ -33,7 +33,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 const Boston = (props, ref) => {
-  const { latLon } = props;
+  const { latLon, setopenBox } = props;
   const [map, setMap] = useState(null);
   const [geolocation, setGeolocation] = useState(null);
   const [popupContent, setPopupContent] = useState("");
@@ -265,7 +265,12 @@ const Boston = (props, ref) => {
 
   return (
     <>
-      <div id="map" style={{ width: "100%", height: "100%" }} />
+      <div
+        onClick={() => {setopenBox(false)}}
+        onDoubleClick={() => {setopenBox(true)}}
+        id="map"
+        style={{ width: "100%", height: "100%" }}
+      />
 
       {isPopupActive && (
         <div className={`popup-box ${isPopupActive ? "active" : ""}`}>

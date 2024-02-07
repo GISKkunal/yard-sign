@@ -43,7 +43,7 @@ export default function PageLoading() {
           {themeSeeting.settings.theme === "DARK" ? (
             <>
               <img
-                src="images/logo.svg"
+                src="images/Logo.png"
                 alt="loader"
                 style={{ width: "100%" }}
               />
@@ -51,9 +51,9 @@ export default function PageLoading() {
           ) : (
             <>
               <img
-                src="/images/logo.svg"
+                src="/images/Logo.png"
                 alt="loader"
-                style={{ width: "200px", height: "200px" }}
+                style={{ maxWidth: "200px" }}
               />
             </>
           )}

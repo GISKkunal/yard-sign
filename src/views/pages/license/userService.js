@@ -71,7 +71,7 @@ function PrivacyPolicy() {
   return (
     <Box className={classes.mainBox}>
     <Box>
-      <img src="/images/logo.svg" />
+      <img src="/images/Logo.png" alt="" style={{maxWidth:"200px"}} />
     </Box>
     <Box><Typography className={classes.mainHeading}>User Service Agreement</Typography></Box>
   {data && <Box className={classes.content}>
